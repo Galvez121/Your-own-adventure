@@ -1,6 +1,6 @@
 #this is my adventure. Select the options and enjoy
 #The module NPC contains the npc of this game
-import npcs
+from npcs import Npcs
 import random
 
 #Weather and environment
@@ -17,7 +17,10 @@ elements_control = []
 weapons = []
 spells = {}
 skills = {}
-health = [1,2,3,4,5]
+health = 4
+
+#enemies
+enemis = ['goblins', 'big bats','big mouses']
 
 print('Hi Adventorous',player, 'and welcome to this history, your mision is become The warrior king')
 
@@ -44,9 +47,11 @@ while True:
         quit()
             
 #Here you select your weapon
-#The module NPC contains the npc of this game
+#The class NPC contains the npcs of this game
 
-print('Hi my name is',npcs.lopez()) 
+dialogue = Npcs()
+
+print(dialogue.npc_lopez()) 
 while True:
     answer_of_the_weapon = input('Each new warrior needs to select one of these weapons magic sword or spell book. Select one \nwrite sword or book ').lower()
 
@@ -72,9 +77,16 @@ print('Welcome new adventorous this is your first day in this world\nGo to the t
 print()
 
 
+#Forest
+'''while health >= 0:
+    print('You enter the forest and find a men, do you want to talk with him or do you want to conitinue your way')
+    election = input('Write talk or continuo ').lower()
+    random_election = random.choice(enemis)
+    if election == 'talk':
+        print('You continue and then you lose yourself and die for a',random_election)
+        health -= 1'''
 
-
-
+ 
 #here is the radom weather (Work with this later)
 random_election = random.choice(environment)
 
