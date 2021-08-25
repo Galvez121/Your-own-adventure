@@ -19,16 +19,16 @@ skills = {}
 health = 4
 
 # Enemies
-enemis = ["goblin", "big bat", "big mouse"]
+ENEMIES = ["goblin", "big bat", "big mouse"]
 
 print(
     "Hi Adventorous",
     player,
-    "and welcome to this history, your mision is become The warrior king",
+    "and welcome to this history, your mision is end you day alives",
 )
 
 answer_of_the_element = input(
-    "You have to select one of this two elements control, fire or water. What of those do you want to control? (fire/water) "
+    "You have to select one of this two elements control, fire or water. Which elements do you want to control? (fire/water) "
 ).lower()
 
 # Here you select your element
@@ -90,58 +90,64 @@ print()
 
 # Here start the history
 print(
-    "Welcome new adventorous this is your first day in this world\nGo to the tavern and select your task"
+    "Welcome new adventurer this is your first day in this world\nGo to the tavern and select your task"
 )
 print()
 
+dialogue.npc_bartender(1)  # Number of the dialogue that you want to output
+
+election = input(
+    "Where do you want to go? To the Forest or The Cave\nWrite forest or cave "
+).lower()
 
 # Forest
-while health >= 0:
-    print(
-        "You enter the forest and you find a old men, do you want to talk with him or do you want to continue your way"
-    )
-    election = input("Write talk or continue ").lower()
-    print()
-    random_election = random.choice(enemis)
-    if election == "continue":
+if election == "forest":
+    while health >= 0:
         print(
-            "You continue and then you lose yourself and you are hurt by a",
-            random_election,
+            "You enter the forest and you find a old men, do you want to talk with him or do you want to continue on your way"
         )
-        health -= 1
-        print("You come back and you decide to talk with the old men")
+        election = input("Write talk or continue ").lower()
         print()
-        print(dialogue.npc_old_men())
-        your_choice = input(
-            "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
-        ).lower()
-        print()
-        if your_choice == "continue":
+        random_enemy = random.choice(ENEMIES)
+        if election == "continue":
             print(
-                "You continue and then you lose yourself and you are hurt by a",
-                random_election,
+                "You continue and then you get lose and you are hurt by a",
+                random_enemy,
             )
             health -= 1
-            print("You are so dumb, Please go to the rouins")
+            print("You come back and you decide to talk with the old men")
             print()
+            print(dialogue.npc_old_men())
             your_choice = input(
-                "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
+                "Do you want to go to the ruins or do you want to continue\nWrite go or continue "
             ).lower()
+            print()
             if your_choice == "continue":
-                print("You die for a", random_election)
-                health -= 3
-    elif election == "talk":
-        print(dialogue.npc_old_men())
+                print(
+                    "You continue and then you get lose and you are hurt by a",
+                    random_enemy,
+                )
+                health -= 1
+                print("You are so dumb, Please go to the ruins")
+                print()
+                your_choice = input(
+                    "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
+                ).lower()
+                if your_choice == "continue":
+                    print("You die for a", random_enemy)
+                    health -= 3
+        elif election == "talk":
+            print(dialogue.npc_old_men())
 
-    else:
-        health -= 4
+        else:
+            health -= 4
 
 if health <= 0:
     print("You lost")
 
 
 # Here is the radom weather (Work with this later)
-random_election = random.choice(ENVIROMENT)
+random_weather = random.choice(ENVIROMENT)
 
-print(random_election)
+print(random_weather)
 print("The end")
