@@ -1,4 +1,4 @@
-# Tis is my adventure. Select the options and enjoy
+# This is my adventure. Select the options and enjoy
 from npcs import Npcs  # The module NPC contains the npc of this game
 import random
 
@@ -38,7 +38,7 @@ while True:
         spells[
             "fire ball"
         ] = 600  # This is a spell for the magic book, the number is the power
-        skills["fire cut"] = 400
+        skills["fire cut"] = 500
         print("You select fire control.")
         break
 
@@ -138,9 +138,51 @@ if election == "forest":
                     health -= 3
         elif election == "talk":
             print(dialogue.npc_old_men())
+            your_choice = input(
+                "Do you want to go to the ruins or do you want to continue\nWrite go or continue "
+            ).lower()
+            print()
+            if your_choice == "continue":
+                print(
+                    "You continue and then you get lose and you are hurt by a",
+                    random_enemy,
+                )
+                health -= 1
+                print("You are so dumb, Please go to the ruins")
+                print()
+                your_choice = input(
+                    "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
+                ).lower()
+                if your_choice == "continue":
+                    print("You die for a", random_enemy)
+                    health -= 3
+
+            elif your_choice == "go":
+                election = input(
+                    "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                ).lower()
+
+                if election == "right":
+                    election = input(
+                        "A big bat appears, Do you want to run or fight? (write run or fight) "
+                    ).lower()
+                    if election == "fight":
+                        if answer_of_the_weapon == "book":
+                            for key, power in sorted(spells.items()):
+                                print("your attack is", key, "with power", power)
+
+                        elif answer_of_the_weapon == "sword":
+                            for key, power in sorted(skills.items()):
+                                print("your attack is", key, "with power", power)
 
         else:
             health -= 4
+
+# Cave
+elif election == "cave":
+    print("cave")
+else:
+    print("This option is not valid")
 
 if health <= 0:
     print("You lost")
@@ -148,6 +190,18 @@ if health <= 0:
 
 # Here is the radom weather (Work with this later)
 random_weather = random.choice(ENVIROMENT)
+
+
+# Here is the score that his output will be in other file
+"""score = 150
+
+
+def score_file(your_score):
+    with open("YourScore.txt", "a") as file:
+        file.write("Your Score is " + str(your_score))
+
+
+score_file(score)"""
 
 print(random_weather)
 print("The end")
