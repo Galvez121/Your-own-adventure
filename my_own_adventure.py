@@ -5,6 +5,7 @@ import random
 # Weather and envioronment
 
 ENVIROMENT = ("windy", "sunny", "rainy", "cloudy")
+random_weather = random.choice(ENVIROMENT)
 
 # Make you player
 player = input("What is your adventorous name? ")
@@ -89,6 +90,7 @@ print(
 print()
 
 # Here start the history
+print("Today the weather is", random_weather)
 print(
     "Welcome new adventurer this is your first day in this world\nGo to the tavern and select your task"
 )
@@ -136,6 +138,73 @@ if election == "forest":
                 if your_choice == "continue":
                     print("You die for a", random_enemy)
                     health -= 3
+                elif your_choice == "go":
+                    election = input(
+                        "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                    ).lower()
+
+                    if election == "right":
+                        election = input(
+                            "A big bat appears, Do you want to run or fight? (write run or fight) "
+                        ).lower()
+                        if election == "fight":
+                            enemy = Npcs()
+                            if answer_of_the_weapon == "book":
+                                for key, power in spells.items():
+                                    print("your attack is", key, "with power", power)
+                                enemy.npc_enemy_bat(spells)
+                                print("You continue and you find a new spell")
+                                break
+                            elif answer_of_the_weapon == "sword":
+                                for key, power in skills.items():
+                                    print("your attack is", key, "with power", power)
+                                enemy.npc_enemy_bat(skills)
+                                print("You continue and you find a new chest armor")
+                                break
+                        elif election == "run":  # Continue with this
+                            pass
+                    elif election == "left":  # Continue with this
+                        pass
+
+                    else:
+                        print(
+                            "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                        )
+                        health -= 4
+            elif your_choice == "go":
+                election = input(
+                    "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                ).lower()
+
+                if election == "right":
+                    election = input(
+                        "A big bat appears, Do you want to run or fight? (write run or fight) "
+                    ).lower()
+                    if election == "fight":
+                        enemy = Npcs()
+                        if answer_of_the_weapon == "book":
+                            for key, power in spells.items():
+                                print("your attack is", key, "with power", power)
+                            enemy.npc_enemy_bat(spells)
+                            print("You continue and you find a new spell")
+                            break
+                        elif answer_of_the_weapon == "sword":
+                            for key, power in skills.items():
+                                print("your attack is", key, "with power", power)
+                            enemy.npc_enemy_bat(skills)
+                            print("You continue and you find a new chest armor")
+                            break
+                    elif election == "run":  # Continue with this
+                        pass
+                elif election == "left":  # Continue with this
+                    pass
+
+                else:
+                    print(
+                        "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                    )
+                    health -= 4
+
         elif election == "talk":
             print(dialogue.npc_old_men())
             your_choice = input(
@@ -167,14 +236,29 @@ if election == "forest":
                         "A big bat appears, Do you want to run or fight? (write run or fight) "
                     ).lower()
                     if election == "fight":
+                        enemy = Npcs()
                         if answer_of_the_weapon == "book":
-                            for key, power in sorted(spells.items()):
+                            for key, power in spells.items():
                                 print("your attack is", key, "with power", power)
-
+                            enemy.npc_enemy_bat(spells)
+                            print("You continue and you find a new spell")
+                            break
                         elif answer_of_the_weapon == "sword":
-                            for key, power in sorted(skills.items()):
+                            for key, power in skills.items():
                                 print("your attack is", key, "with power", power)
+                            enemy.npc_enemy_bat(skills)
+                            print("You continue and you find a new chest armor")
+                            break
+                    elif election == "run":  # Continue with this
+                        pass
+                elif election == "left":  # Continue with this
+                    pass
 
+                else:
+                    print(
+                        "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                    )
+                    health -= 4
         else:
             health -= 4
 
@@ -203,5 +287,4 @@ def score_file(your_score):
 
 score_file(score)"""
 
-print(random_weather)
 print("The end")
