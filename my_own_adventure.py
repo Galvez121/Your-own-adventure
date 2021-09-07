@@ -1,6 +1,7 @@
 # This is my adventure. Select the options and enjoy
 from npcs import Npcs  # The module NPC contains the npc of this game
 import random
+import elections
 
 # Weather and envioronment
 
@@ -144,27 +145,12 @@ if election == "forest":
                     ).lower()
 
                     if election == "right":
-                        election = input(
-                            "A big bat appears, Do you want to run or fight? (write run or fight) "
-                        ).lower()
-                        if election == "fight":
-                            enemy = Npcs()
-                            if answer_of_the_weapon == "book":
-                                for key, power in spells.items():
-                                    print("your attack is", key, "with power", power)
-                                enemy.npc_enemy_bat(spells)
-                                print("You continue and you find a new spell")
-                                break
-                            elif answer_of_the_weapon == "sword":
-                                for key, power in skills.items():
-                                    print("your attack is", key, "with power", power)
-                                enemy.npc_enemy_bat(skills)
-                                print("You continue and you find a new chest armor")
-                                break
-                        elif election == "run":  # Continue with this
-                            pass
+                        elections.choice_right_for_the_forest(
+                            answer_of_the_weapon, skills, spells
+                        )
+                        break
                     elif election == "left":  # Continue with this
-                        pass
+                        print("s")
 
                     else:
                         print(
@@ -177,25 +163,10 @@ if election == "forest":
                 ).lower()
 
                 if election == "right":
-                    election = input(
-                        "A big bat appears, Do you want to run or fight? (write run or fight) "
-                    ).lower()
-                    if election == "fight":
-                        enemy = Npcs()
-                        if answer_of_the_weapon == "book":
-                            for key, power in spells.items():
-                                print("your attack is", key, "with power", power)
-                            enemy.npc_enemy_bat(spells)
-                            print("You continue and you find a new spell")
-                            break
-                        elif answer_of_the_weapon == "sword":
-                            for key, power in skills.items():
-                                print("your attack is", key, "with power", power)
-                            enemy.npc_enemy_bat(skills)
-                            print("You continue and you find a new chest armor")
-                            break
-                    elif election == "run":  # Continue with this
-                        pass
+                    elections.choice_right_for_the_forest(
+                        answer_of_the_weapon, skills, spells
+                    )
+                    break
                 elif election == "left":  # Continue with this
                     pass
 
@@ -232,25 +203,10 @@ if election == "forest":
                 ).lower()
 
                 if election == "right":
-                    election = input(
-                        "A big bat appears, Do you want to run or fight? (write run or fight) "
-                    ).lower()
-                    if election == "fight":
-                        enemy = Npcs()
-                        if answer_of_the_weapon == "book":
-                            for key, power in spells.items():
-                                print("your attack is", key, "with power", power)
-                            enemy.npc_enemy_bat(spells)
-                            print("You continue and you find a new spell")
-                            break
-                        elif answer_of_the_weapon == "sword":
-                            for key, power in skills.items():
-                                print("your attack is", key, "with power", power)
-                            enemy.npc_enemy_bat(skills)
-                            print("You continue and you find a new chest armor")
-                            break
-                    elif election == "run":  # Continue with this
-                        pass
+                    elections.choice_right_for_the_forest(
+                        answer_of_the_weapon, skills, spells
+                    )
+                    break
                 elif election == "left":  # Continue with this
                     pass
 
