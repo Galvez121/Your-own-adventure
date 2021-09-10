@@ -1,4 +1,5 @@
 # This is my adventure. Select the options and enjoy
+from os import kill
 from npcs import Npcs  # The module NPC contains the npc of this game
 import random
 import elections
@@ -15,6 +16,7 @@ player = input("What is your adventorous name? ")
 elements_control = []
 
 # List of my stuff(inventory)
+pets = []
 weapons = []
 spells = {}
 skills = {}
@@ -146,11 +148,14 @@ if election == "forest":
 
                     if election == "right":
                         elections.choice_right_for_the_forest(
-                            answer_of_the_weapon, skills, spells
+                            weapons, answer_of_the_weapon, skills, spells
                         )
                         break
-                    elif election == "left":  # Continue with this
-                        print("s")
+                    elif election == "left":
+                        elections.choice_left_for_the_forest(
+                            weapons, answer_of_the_weapon, skills, spells, pets
+                        )
+                        break
 
                     else:
                         print(
@@ -164,17 +169,20 @@ if election == "forest":
 
                 if election == "right":
                     elections.choice_right_for_the_forest(
-                        answer_of_the_weapon, skills, spells
+                        weapons, answer_of_the_weapon, skills, spells
                     )
                     break
-                elif election == "left":  # Continue with this
-                    pass
+                elif election == "left":
+                    elections.choice_left_for_the_forest(
+                        weapons, answer_of_the_weapon, skills, spells, pets
+                    )
+                    break
 
                 else:
                     print(
                         "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
                     )
-                    health -= 4
+                    health -= 5
 
         elif election == "talk":
             print(dialogue.npc_old_men())
@@ -195,7 +203,7 @@ if election == "forest":
                 ).lower()
                 if your_choice == "continue":
                     print("You die for a", random_enemy)
-                    health -= 3
+                    health -= 2
 
             elif your_choice == "go":
                 election = input(
@@ -204,23 +212,27 @@ if election == "forest":
 
                 if election == "right":
                     elections.choice_right_for_the_forest(
-                        answer_of_the_weapon, skills, spells
+                        weapons, answer_of_the_weapon, skills, spells
                     )
                     break
-                elif election == "left":  # Continue with this
-                    pass
+                elif election == "left":
+                    elections.choice_left_for_the_forest(
+                        weapons, answer_of_the_weapon, skills, spells, pets
+                    )
+                    break
 
                 else:
                     print(
                         "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
                     )
                     health -= 4
+                    break
         else:
             health -= 4
 
 # Cave
 elif election == "cave":
-    print("cave")
+    print("This option is not ready yet")
 else:
     print("This option is not valid")
 
@@ -228,19 +240,47 @@ if health <= 0:
     print("You lost")
 
 
-# Here is the radom weather (Work with this later)
-random_weather = random.choice(ENVIROMENT)
+# Here is your inventory in the end that his output will be in other file
 
 
-# Here is the score that his output will be in other file
-"""score = 150
+def inventory_file():
+    "Make a ner file .txt with your inventory in the end of the history"
+    with open("YourInventory.txt", "a") as file:
+        if answer_of_the_weapon == "sword":
+            if "Baby dog" not in pets:
+                pets.append("You don't find any pet")
+            file.write(
+                """\n******************************************\n/Your end the history with this inventory/\n******************************************
+                \n"""
+                + "\nYour skill is: "
+                + str(skills)
+                + "\nYour pet is: "
+                + str(pets)
+                + "\nYour inventory is "
+                + str(weapons)
+                + "\nYour health is: "
+                + str(health)
+                + "\n"
+            )
+        elif answer_of_the_weapon == "book":
+            if "Baby dog" not in pets:
+                pets.append("You don't find any pet")
+            file.write(
+                """\n******************************************\n/Your end the history with this inventory/\n******************************************
+                \n"""
+                + "\nYour spell is: "
+                + str(spells)
+                + "\nYour pet is: "
+                + str(pets)
+                + "\nYour inventory is "
+                + str(weapons)
+                + "\nYour health is: "
+                + str(health)
+                + "\n"
+            )
+        else:
+            file.write("Error ")
 
 
-def score_file(your_score):
-    with open("YourScore.txt", "a") as file:
-        file.write("Your Score is " + str(your_score))
-
-
-score_file(score)"""
-
+inventory_file()
 print("The end")

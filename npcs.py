@@ -22,3 +22,7 @@ class Npcs:
     def npc_enemy_bat(self, attack: dict) -> str:
         for key, power in attack.items():
             print("You kill the enemy with", key, ",you did", power, "damage")
+
+    def npc_enemy_goblin(self, attack: dict) -> str:
+        for key, power in attack.items():
+            print("You kill the enemy with", key, ",you did", power, "damage")
