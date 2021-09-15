@@ -1,5 +1,4 @@
 # This is my adventure. Select the options and enjoy
-from os import kill
 from npcs import Npcs  # The module NPC contains the npc of this game
 import random
 import elections
@@ -10,13 +9,14 @@ ENVIROMENT = ("windy", "sunny", "rainy", "cloudy")
 random_weather = random.choice(ENVIROMENT)
 
 # Make you player
-player = input("What is your adventorous name? ")
+your_name = input("What is your adventorous name? ")
 
 # ist of habilities
 elements_control = []
 
 # List of my stuff(inventory)
 pets = []
+elements = []
 weapons = []
 spells = {}
 skills = {}
@@ -27,7 +27,7 @@ ENEMIES = ["goblin", "big bat", "big mouse"]
 
 print(
     "Hi Adventorous",
-    player,
+    your_name,
     "and welcome to this history, your mision is end you day alives",
 )
 
@@ -38,6 +38,7 @@ answer_of_the_element = input(
 # Here you select your element
 while True:
     if answer_of_the_element == "fire":
+        elements.append("fire")
         elements_control.append("fire")
         spells[
             "fire ball"
@@ -47,6 +48,7 @@ while True:
         break
 
     elif answer_of_the_element == "water":
+        elements.append("water")
         elements_control.append("water")
         spells[
             "water ball"
@@ -101,12 +103,12 @@ print()
 
 dialogue.npc_bartender(1)  # Number of the dialogue that you want to output
 
-election = input(
+election_forest_cave = input(
     "Where do you want to go? To the Forest or The Cave\nWrite forest or cave "
 ).lower()
 
 # Forest
-if election == "forest":
+if election_forest_cave == "forest":
     while health >= 0:
         print(
             "You enter the forest and you find a old men, do you want to talk with him or do you want to continue on your way"
@@ -231,14 +233,36 @@ if election == "forest":
             health -= 4
 
 # Cave
-elif election == "cave":
-    print("This option is not ready yet")
+elif election_forest_cave == "cave":
+    print("You go into the cave and a witch appears, and she says:")
+    dialogue.witch_npc(your_name, 1)
+    while True:
+        election = input(
+            "You enter to the cave and find two ways, left and right.\nWhere do you want to go? (write left or right) "
+        ).lower()
+        if election == "right":
+            elections.choice_right_for_the_cave(
+                weapons, answer_of_the_weapon, skills, elements, spells, pets
+            )
+            break
+        elif election == "left":
+            elections.choice_left_for_the_cave(
+                weapons, answer_of_the_weapon, skills, spells
+            )
+            break
+
+        else:
+            print(
+                "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+            )
+            break
 else:
     print("This option is not valid")
 
 if health <= 0:
     print("You lost")
 
+empty_list = []
 
 # Here is your inventory in the end that his output will be in other file
 
@@ -247,7 +271,7 @@ def inventory_file():
     "Make a ner file .txt with your inventory in the end of the history"
     with open("YourInventory.txt", "a") as file:
         if answer_of_the_weapon == "sword":
-            if "Baby dog" not in pets:
+            if pets == empty_list:
                 pets.append("You don't find any pet")
             file.write(
                 """\n******************************************\n/Your end the history with this inventory/\n******************************************
@@ -260,6 +284,8 @@ def inventory_file():
                 + str(weapons)
                 + "\nYour health is: "
                 + str(health)
+                + "\nYou control this element:"
+                + str(elements)
                 + "\n"
             )
         elif answer_of_the_weapon == "book":
@@ -276,6 +302,8 @@ def inventory_file():
                 + str(weapons)
                 + "\nYour health is: "
                 + str(health)
+                + "\nnYou control this element:"
+                + str(elements)
                 + "\n"
             )
         else:
