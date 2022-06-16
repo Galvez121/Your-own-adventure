@@ -11,7 +11,7 @@ random_weather = random.choice(ENVIROMENT)
 # Make you player
 your_name = input("What is your adventorous name? ")
 
-# ist of habilities
+# List of habilities
 elements_control = []
 
 # List of my stuff(inventory)
@@ -28,11 +28,11 @@ ENEMIES = ["goblin", "big bat", "big mouse"]
 print(
     "Hi Adventorous",
     your_name,
-    "and welcome to this history, your mision is end you day alives",
+    "and welcome to this history, your mision is to end your day alive",
 )
 
 answer_of_the_element = input(
-    "You have to select one of this two elements control, fire or water. Which elements do you want to control? (fire/water) "
+    "You have to select one of this two element controls: fire or water. What element do you want to control? (fire/water) "
 ).lower()
 
 # Here you select your element
@@ -69,7 +69,7 @@ dialogue = Npcs()
 print(dialogue.npc_lopez())
 while True:
     answer_of_the_weapon = input(
-        "Each new warrior needs to select one of these weapons magic sword or spell book. Select one \nwrite sword or book "
+        "Each new warrior needs to select one of these weapons, magic sword or spell book. Select one \nwrite sword or book "
     ).lower()
 
     if answer_of_the_weapon == "book":
@@ -87,9 +87,9 @@ while True:
         quit()
 
 print(
-    "Your profile is done.\nYour element:",
+    "Your profile is done.\nYour element is:",
     elements_control[0],
-    "\nYour weapon:",
+    "\nYour weapon is:",
     weapons[0],
 )
 print()
@@ -97,7 +97,7 @@ print()
 # Here start the history
 print("Today the weather is", random_weather)
 print(
-    "Welcome new adventurer this is your first day in this world\nGo to the tavern and select your task"
+    "Welcome new adventurer this is your first day in this world.\nGo to the tavern and select your task"
 )
 print()
 
@@ -111,7 +111,7 @@ election_forest_cave = input(
 if election_forest_cave == "forest":
     while health >= 0:
         print(
-            "You enter the forest and you find a old men, do you want to talk with him or do you want to continue on your way"
+            "You enter in the forest and you find a old men. Do you want to talk with him or you want to continue on your way"
         )
         election = input("Write talk or continue ").lower()
         print()
@@ -126,7 +126,7 @@ if election_forest_cave == "forest":
             print()
             print(dialogue.npc_old_men())
             your_choice = input(
-                "Do you want to go to the ruins or do you want to continue\nWrite go or continue "
+                "Do you want to go to the ruins or you want to continue\nWrite go or continue "
             ).lower()
             print()
             if your_choice == "continue":
@@ -135,17 +135,17 @@ if election_forest_cave == "forest":
                     random_enemy,
                 )
                 health -= 1
-                print("You are so dumb, Please go to the ruins")
+                print("You are so dumb. Please go to the ruins")
                 print()
                 your_choice = input(
-                    "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
+                    "Do you want to go to the rouins do you want to continue\nWrite go or continue "
                 ).lower()
                 if your_choice == "continue":
                     print("You die for a", random_enemy)
                     health -= 3
                 elif your_choice == "go":
                     election = input(
-                        "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                        "You enter and there are two ways, which are left and right.\nWhere do you want to go? (write left or right) "
                     ).lower()
 
                     if election == "right":
@@ -161,12 +161,12 @@ if election_forest_cave == "forest":
 
                     else:
                         print(
-                            "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                            "You wrote the wrong choice or your choice is not in the options... You DIE! Dumd!"
                         )
                         health -= 4
             elif your_choice == "go":
                 election = input(
-                    "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                    "You enter and there are two ways, which left and right.\nWhere do you want to go? (write left or right) "
                 ).lower()
 
                 if election == "right":
@@ -182,26 +182,26 @@ if election_forest_cave == "forest":
 
                 else:
                     print(
-                        "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                        "You wrote the wrong choice or your choice is not in the options... You DIE! Dumd!"
                     )
                     health -= 5
 
         elif election == "talk":
             print(dialogue.npc_old_men())
             your_choice = input(
-                "Do you want to go to the ruins or do you want to continue\nWrite go or continue "
+                "Do you want to go to the ruins or you want to continue\nWrite go or continue "
             ).lower()
             print()
             if your_choice == "continue":
                 print(
-                    "You continue and then you get lose and you are hurt by a",
+                    "You continue and then you get lose, and then, you are hurt by a",
                     random_enemy,
                 )
                 health -= 1
                 print("You are so dumb, Please go to the ruins")
                 print()
                 your_choice = input(
-                    "Do you want to go to the rouins or do you want to continue\nWrite go or continue "
+                    "Do you want to go to the rouins or you want to continue\nWrite go or continue "
                 ).lower()
                 if your_choice == "continue":
                     print("You die for a", random_enemy)
@@ -209,7 +209,7 @@ if election_forest_cave == "forest":
 
             elif your_choice == "go":
                 election = input(
-                    "You enter and there are two ways, left and right.\nWhere do you want to go? (write left or right) "
+                    "You enter and there are two ways, which are left and right.\nWhere do you want to go? (write left or right) "
                 ).lower()
 
                 if election == "right":
@@ -225,7 +225,7 @@ if election_forest_cave == "forest":
 
                 else:
                     print(
-                        "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                        "You wrote the wrong choice or your choice is not in the options... You DIE! Dumd!"
                     )
                     health -= 4
                     break
@@ -238,7 +238,7 @@ elif election_forest_cave == "cave":
     dialogue.witch_npc(your_name, 1)
     while True:
         election = input(
-            "You enter to the cave and find two ways, left and right.\nWhere do you want to go? (write left or right) "
+            "You enter to the cave and find two ways, which are left and right.\nWhere do you want to go? (write left or right) "
         ).lower()
         if election == "right":
             elections.choice_right_for_the_cave(
@@ -253,7 +253,7 @@ elif election_forest_cave == "cave":
 
         else:
             print(
-                "You wrote the election wrong or the option is not in the options... You DIE! Dumd"
+                "You wrote the wrong choice or your choice is not in the options... You DIE! Dumd!"
             )
             break
 else:

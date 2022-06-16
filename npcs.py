@@ -1,5 +1,5 @@
 class Npcs:
-    """Class Npc contains all persons of the games, return dialogues and contain the information of the enemies"""
+    """Class Npc contains all the people in the games, return dialogues and contain the information of the enemies, as well"""
 
     def npc_lopez(self) -> str:
         return "Hi my name is Lopez"
@@ -10,7 +10,7 @@ class Npcs:
                 " - Welcome advneturer to my tavern, Select one of the tasks on the wall"
             )
             print(
-                " - I recomend you don't go to the Forest if you have the spell book and you element is fire and Don't go to the cave if you have the sword"
+                " - I recomend you don't go to the Forest if you have the spell book and your element is fire. Also, Don't go to the cave if you have the sword"
             )
 
         elif number_of_dialogue == 2:
@@ -28,16 +28,16 @@ class Npcs:
                 "my eye tells me that you will come here. Enter to the cave and good luck.",
             )
         else:
-            print("Error, Dialogue don't difined")
+            print("Error, Dialogue has not been't difined")
 
     def npc_enemy_bat(self, attack: dict) -> str:
         for key, power in attack.items():
-            print("You kill the enemy with", key, ",you did", power, "damage")
+            print("You killed the enemy with", key, ",you did", power, "damage")
 
     def npc_enemy_goblin(self, attack: dict) -> str:
         for key, power in attack.items():
-            print("You kill the enemy with", key, ",you did", power, "damage")
+            print("You killed the enemy with", key, ",you did", power, "damage")
 
     def npc_enemy_big_mouse(self, attack: dict) -> str:
         for key, power in attack.items():
-            print("You kill the enemy with", key, ",you did", power, "damage")
+            print("You killed the enemy with", key, ",you did", power, "damage")
